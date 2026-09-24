@@ -17,9 +17,15 @@
       {% for item in produtos %}
       <div class="col">
         <div class="card-product h-100 p-3 d-flex flex-column">
-          <!-- Placeholder de Imagem com Ícones Dinâmicos -->
-          <div class="product-img-box mb-3 position-relative">
-            <i class="bi bi-box-seam text-secondary fs-1"></i>
+          
+          <!-- Imagem com fallback e badges -->
+          <div class="product-img-box mb-3 position-relative text-center">
+            {% if item.imagem %}
+              <img src="{{ item.imagem }}" alt="{{ item.nome }}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
+            {% else %}
+              <i class="bi bi-box-seam text-secondary fs-1"></i>
+            {% endif %}
+
             {% if item.estoque <= 2 %}
               <span class="badge bg-danger position-absolute top-0 start-0 m-2">Últimas unidades!</span>
             {% else %}
